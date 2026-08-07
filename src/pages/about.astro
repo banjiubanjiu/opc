@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import { site } from '../data/site';
+---
+
+<Base title="理念" description="OPC 社区的理念:我们信什么,坚持什么,不做什么">
+  <!-- 引言 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-24">
+      <p class="text-xs uppercase tracking-[0.3em] text-accent">About · 理念</p>
+      <h1 class="mt-6 max-w-3xl font-serif text-3xl font-semibold leading-snug sm:text-5xl">
+        追求变大是大多数人的惯性选择,
+        <br />
+        追求变好才是一人公司的真谛。
+      </h1>
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        Paul Jarvis 在《一人公司》(Company of One)里写下了这句话。
+        我们做这个社区,也遵循同样的逻辑:不做大,做好。
+        做这个社区之前,我们在 w2solo、即刻、小红书上看了很多同行的真实记录:
+        有第一桶金 $4.16,也有“先到这里吧,我得去找个班上了”。
+        我们把难处摆到台面上,然后想清楚:这样一个社区,该信什么、坚持什么、不做什么。
+      </p>
+    </div>
+  </section>
+
+  <!-- 我们信什么 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="01" label="我们信什么" />
+      <div class="mt-8 space-y-8">
+        <QuoteBlock quote={site.mission.quote} source={site.mission.quoteSource} />
+        <QuoteBlock
+          quote="追求变大是大多数人的惯性选择,追求变好才是一人公司的真谛。定义什么时候「够了」,而不是盲目追求增长。"
+          source="Paul Jarvis · 《一人公司》(Company of One)"
+        />
+        <p class="text-xs uppercase tracking-[0.2em] text-muted">
+          One-Person Company — <span class="text-accent">not freelancing, not a side hustle.</span>
+        </p>
+      </div>
+      <p class="mt-8 text-sm leading-relaxed text-muted">
+        我们把下面三条,作为社区里每个人的最低要求:
+      </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-3">
+        {
+          site.mission.principles.map((p, i) => (
+            <div class="rounded-lg border border-line bg-white/50 p-5">
+              <p class="font-serif text-sm text-accent">0{i + 1} · {p.title}</p>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{p.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 我们坚持什么 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="02" label="我们坚持什么" />
+      <div class="mt-8 space-y-8">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <QuoteBlock
+            quote="地球第一,利润第二。我们经营事业,是为了拯救我们的家园。"
+            source="Patagonia · 品牌理念与商业愿景"
+          />
+          <p class="max-w-xs text-sm leading-relaxed text-muted">
+            「己欲立而立人,己欲达而达人。」——《论语·雍也》
+          </p>
+        </div>
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <QuoteBlock
+            quote="为增长而增长,是癌细胞的意识形态。"
+            source="Edward Abbey · 经 37signals 引用"
+          />
+          <p class="max-w-xs text-sm leading-relaxed text-muted">
+            「少则得,多则惑。」——《道德经》
+          </p>
+        </div>
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <QuoteBlock
+            quote="言而当,知也;默而当,亦知也。"
+            source="《荀子》"
+          />
+          <p class="max-w-xs text-sm leading-relaxed text-muted">
+            「知之为知之,不知为不知,是知也。」——《论语·为政》
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 我们不做什么 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="03" label="我们不做什么" />
+      <div class="mt-8 rounded-lg border border-line bg-white/50 p-6">
+        <p class="text-sm leading-relaxed text-muted">
+          Patagonia 卖得最好的产品是岩钉,但岩钉会损伤岩壁——创始人亲手停产了它。
+          对自己最赚钱的东西说“不”,是价值观最直接的证明。
+          「不知道说“不”,就不会做品牌。」——《不知道说“不”,就不会做品牌》· 运营派
+        </p>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {[
+          ['不卖课', '以文会友,以友辅仁。——《论语·颜渊》'],
+          ['不拉人头', '少则得,多则惑。——《道德经》'],
+          ['不做裂变', '桃李不言,下自成蹊。——《史记》'],
+        ].map(([t, d]) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5">
+            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10">
+        <QuoteBlock
+          quote="保持小,慢增长,把一件事做到极致。"
+          source="37signals / Basecamp · Stay Small, Grow Slow, and Do One Thing Really Well"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 使命 -->
+  <section>
+    <div class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
+      <SectionLabel no="04" label="我们的使命" />
+      <p class="mx-auto mt-10 max-w-2xl font-serif text-2xl font-semibold leading-relaxed sm:text-3xl">
+        「出入相友,守望相助。」
+      </p>
+      <p class="mx-auto mt-4 text-xs text-muted">——《孟子·滕文公上》</p>
+      <p class="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted">
+        从一座城市的一次见面开始。
+      </p>
+      <div class="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-3">
+        {[
+          ['报名', '填一张表,备注你想聊的话题。'],
+          ['见面', '到现场,认识几个同行的人。'],
+          ['主理人', '想办一场?申请成为你所在城市的主理人。'],
+        ].map(([t, d], i) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5 text-left">
+            <p class="font-serif text-sm text-accent">0{i + 1}</p>
+            <p class="mt-2 font-serif font-semibold">{t}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted">{d}</p>
+          </div>
+        ))}
+      </div>
+      <a
+        href="/signup/"
+        class="mt-10 inline-block rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent"
+      >
+        报名下一场活动
+      </a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,110 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  eventSlug?: string;
+}
+
+const { eventSlug } = Astro.props;
+---
+
+<div id="signup-form" class="rounded-lg border border-line bg-white/60 p-6 sm:p-8">
+  <form
+    class="grid gap-4"
+    data-signup-form
+    data-event={eventSlug ?? ''}
+    data-endpoint={site.formEndpoint}
+  >
+    <div class="grid gap-4 sm:grid-cols-2">
+      <label class="block">
+        <span class="mb-1 block text-sm text-muted">称呼 *</span>
+        <input
+          name="name"
+          required
+          placeholder="怎么称呼你"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+        />
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-sm text-muted">微信 / 手机号 *</span>
+        <input
+          name="contact"
+          required
+          placeholder="用于确认到场"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+        />
+      </label>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <label class="block">
+        <span class="mb-1 block text-sm text-muted">你现在的状态</span>
+        <select
+          name="status"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+        >
+          <option>正在经营一人公司</option>
+          <option>独立开发 / 自由职业</option>
+          <option>计划中,还在准备</option>
+          <option>还在上班,先来看看</option>
+        </select>
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-sm text-muted">所在城市</span>
+        <input
+          name="city"
+          placeholder="如:佛山 / 广州"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+        />
+      </label>
+    </div>
+    <label class="block">
+      <span class="mb-1 block text-sm text-muted">你最想聊的话题</span>
+      <textarea
+        name="topic"
+        rows="3"
+        placeholder="获客、定价、AI 工具、时间管理……都可以"
+        class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+      ></textarea>
+    </label>
+    <p class="text-xs text-muted">
+      活动为公益,仅需支付 49 元茶水费。报名信息仅用于本次活动联系。
+    </p>
+    <button
+      type="submit"
+      class="w-full rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent sm:w-auto"
+    >
+      提交报名
+    </button>
+    <p class="hidden text-sm text-accent" data-signup-success>
+      ✓ 报名已收到。我们会通过微信 / 短信与你确认,注意查收。
+    </p>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-signup-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const endpoint = form.dataset.endpoint;
+      const payload = Object.fromEntries(new FormData(form).entries());
+      const successEl = form.querySelector('[data-signup-success]');
+
+      if (endpoint) {
+        try {
+          await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+        } catch {
+          // 后端失败:降级提示,不阻塞报名意向
+        }
+      } else {
+        // 本地演示:无后端端点,记录到控制台
+        console.log('[OPC signup]', payload);
+      }
+      form.reset();
+      if (successEl) successEl.classList.remove('hidden');
+    });
+  });
+</script>

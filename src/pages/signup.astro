@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import SignupForm from '../components/SignupForm.astro';
+---
+
+<Base title="报名" description="报名参加 OPC 社区线下活动">
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-3xl px-5 py-16 sm:py-20">
+      <SectionLabel no="01" label="报名" />
+      <h1 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">报名参加一场活动。</h1>
+      <p class="mt-4 text-sm leading-relaxed text-muted">
+        活动为公益,仅需支付 49 元茶水费。填写后我们会在活动前 1–2 天通过微信 / 短信与你确认。
+      </p>
+      <div class="mt-10">
+        <SignupForm />
+      </div>
+    </div>
+  </section>
+</Base>

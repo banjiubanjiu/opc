@@ -1,0 +1,271 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import VoiceCard from '../components/VoiceCard.astro';
+import EventCard from '../components/EventCard.astro';
+import { site, activities } from '../data/site';
+
+const upcoming = activities.filter((a) => a.featured).slice(0, 2);
+
+const voices = [
+  {
+    quote: '他们就像我的孩子,每个细节都是一个人在四下无人的深夜或午后打磨的。',
+    name: '程序员自由创业周记',
+    source: '#40:结束了 · w2solo',
+  },
+  {
+    quote: '工作并没有比北京轻松,反而工作时间变得更长,只是做自己喜欢的事情,从心态上会更积极。',
+    name: '河北 · 开源作者',
+    source: '月收入赶超北京工资 · w2solo',
+  },
+  {
+    quote: '从我辞职到现在,我只做了 Reqable 这一个项目。',
+    name: 'Reqable 作者',
+    source: '独立开发 2 年半 · 前商汤',
+  },
+  {
+    quote: '存的钱要够至少一年的房租、房贷和生活基本消费,这才好辞职出来折腾。',
+    name: '李唐',
+    source: '钱迹 App 作者 · w2solo',
+  },
+  {
+    quote: '独立开发者的体验:爽、纯粹、发现更多可能、健康是最重要的。',
+    name: '李唐',
+    source: '钱迹 App 作者 · w2solo',
+  },
+  {
+    quote: '把“一人公司”从创业神话,还原为一种可迁移的思维模型。',
+    name: '图灵的猫',
+    source: 'B 站 · 概念祛魅',
+  },
+  {
+    quote: '做了一场 13 个月的梦。',
+    name: '程序员自由创业周记',
+    source: '#39 · w2solo',
+  },
+];
+---
+
+<Base title={site.name} description={site.slogan}>
+  <!-- Hero -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-28">
+      <p class="text-xs uppercase tracking-[0.3em] text-accent">OPC · One-Person Company 社区</p>
+      <h1 class="mt-6 max-w-3xl font-serif text-4xl font-semibold leading-tight sm:text-6xl">
+        一个人,<span class="text-accent">也是一家公司。</span>
+      </h1>
+      <p class="mt-4 font-serif italic text-muted">Build solo, not alone.</p>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+        OPC(One-Person Company)指以一个人为核心运转的创业形态:独立开发者、独立设计师、
+        自由顾问、内容创作者……一个人从想法到产品,再到一家公司。
+        我们定期在城市里见面,聊产品、获客、AI 的实战,也一起践行科技向善:
+        让科技缓解真实的苦楚,帮助有需要的人群。
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="#why"
+          class="rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent"
+        >
+          为什么是现在
+        </a>
+        <a
+          href="#events"
+          class="rounded-full border border-ink px-6 py-3 text-sm transition-colors hover:bg-ink hover:text-paper"
+        >
+          看看最近的活动
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 为什么是现在 -->
+  <section id="why" class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="01" label="为什么是现在" />
+      <h2 class="mt-8 max-w-3xl font-serif text-3xl font-semibold leading-snug sm:text-4xl">
+        生产工具第一次向个人开放。
+      </h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <div class="space-y-5 text-sm leading-relaxed text-muted">
+          <p>
+            过去个体创业的瓶颈,是人力成本与专业分工。今天,
+            <span class="text-ink">写作有大模型辅助,设计有生成式工具,代码可以半自动生成,
+            客服、翻译、财务、数据分析乃至简单决策,都可以由 AI 分担</span>——
+            原本需要一个小团队协作完成的工作,被压缩进一个人的操作半径。
+          </p>
+          <p>
+            移动支付、平台流量、物流履约的成熟,也把做一门小生意的环节极大压缩:
+            收款、推广、交付、复购,都可以在一部设备里完成。
+          </p>
+        </div>
+        <div class="rounded-lg border border-line bg-white/50 p-6 text-sm leading-relaxed text-muted">
+          <p class="font-serif text-lg font-semibold text-ink">这并非中国的独有现象:</p>
+          <ul class="mt-4 space-y-3">
+            <li>美国拥有单一创始人的新创企业占比,从 2019 年的 23.7% 升至 2025 年上半年的 36.3%</li>
+            <li>英国私营部门约 570 万家企业中,430 万家不雇用除业主之外的任何人</li>
+            <li>国内 38 座城市已建成 143 个创业社区,多地推出 OPC 扶持政策与人才贷</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 但先泼一盆冷水 -->
+  <section id="reality" class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="02" label="但先泼一盆冷水" />
+      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
+        真实的困境。
+      </h2>
+      <div class="mt-8 space-y-6">
+        <QuoteBlock
+          quote="一人公司从来不是职场的避风港,只是换了一种形式承受更大的压力与内耗。"
+          source="36氪 · 《职场最大的假象:等我有个一人公司,就自由了》"
+        />
+        <QuoteBlock
+          quote="AI 大幅降低了个体创业的技术门槛,却丝毫没有降低创业本身的生存门槛。"
+          source="吴晓波频道《个人经济体》专题 · 36氪引用"
+        />
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {[
+          '超过半数的创业者,月收入低于 7000 元。',
+          '大多数项目运营半年,依旧无法实现盈利。',
+          '工作与生活的边界消失,长期伴随营收焦虑。',
+        ].map((t) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5 text-sm leading-relaxed text-muted">
+            {t}
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <VoiceCard
+          quote="工作 9 年的积蓄快用完了。先到这里吧,我得去找个班上了。"
+          name="程序员自由创业周记"
+          source="#40:结束了 · w2solo"
+        />
+        <VoiceCard
+          quote="从去年前三个月的没收入,到 10 月份挣到了第一桶金 $4.16。"
+          name="程序员自由创业周记"
+          source="#40:结束了 · w2solo"
+        />
+      </div>
+      <p class="mt-6 text-xs text-muted">
+        「嘤其鸣矣,求其友声。」——《诗经·小雅·伐木》
+      </p>
+    </div>
+  </section>
+
+  <!-- 那我们想做什么:真实的声音 -->
+  <section id="voices" class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="03" label="那我们想做什么" />
+      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
+        同见同行,走更远的路。
+      </h2>
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        一个人做产品的日子,大多是这样的:早上醒来先看后台数据,回复群里的反馈和报错,
+        遇到问题就约用户见一面——大多数时间,对着屏幕,四下无人。
+        我们想做的很简单:定期在城市里组织小规模见面。
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-lg border border-line bg-white/50 p-5">
+          <p class="font-serif text-lg font-semibold text-accent">Coffee Chat</p>
+          <p class="mt-2 text-sm leading-relaxed text-muted">
+            低门槛的下午茶:每人介绍自己在做的事、卡住的地方,其余时间自由聊。
+          </p>
+        </div>
+        <div class="rounded-lg border border-line bg-white/50 p-5">
+          <p class="font-serif text-lg font-semibold text-accent">闭门沙龙</p>
+          <p class="mt-2 text-sm leading-relaxed text-muted">
+            邀请实践者讲透一个环节:获客、交付、客服。内容不外传。
+          </p>
+        </div>
+      </div>
+      <p class="mt-4 text-xs text-muted">
+        「他山之石,可以攻玉。」——《诗经·小雅·鹤鸣》
+      </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {voices.map((v) => <VoiceCard {...v} />)}
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {[
+          ['同行的分享,是最精准的信息', '独学而无友,则孤陋而寡闻。——《礼记·学记》'],
+          ['聊方法、心得、心路历程', '言而当,知也;默而当,亦知也。——《荀子》'],
+          ['免费报名', '活动为公益,仅需支付 49 元茶水费。'],
+        ].map(([t, d]) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5">
+            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 我们能提供什么 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="04" label="我们能提供什么" />
+      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
+        面向一人公司实践者:独立开发者、独立设计师、自由顾问、内容创作者。
+      </h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          ['同行', '线下活动与城市社区:每场十几人,人人有开口的机会。'],
+          ['经验', '真实的分享与踩坑:只讲真做过的,第一桶金 $4.16 和“先到这里吧”都摆上台面。'],
+          ['旅程', '从想法到 MVP 的陪伴:每场活动对应一个阶段,按需参加。'],
+          ['理念', '科技向善与永续:聊的不只是怎么赚钱,还有科技怎么缓解真实的苦楚。'],
+          ['机会', '合作与连接:互为客户,互为供应商,从一杯咖啡开始。'],
+        ].map(([t, d]) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5">
+            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 活动 -->
+  <section id="events" class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <div class="flex items-end justify-between">
+        <SectionLabel no="05" label="近期活动" />
+        <a href="/events/" class="text-sm text-accent hover:underline">全部活动 →</a>
+      </div>
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
+        目前我们主要活跃在<span class="text-ink">佛山、广州</span>,
+        深圳等更多广东城市也在陆续开启。
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {upcoming.map((a) => <EventCard activity={a} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 加入 -->
+  <section>
+    <div class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
+      <h2 class="font-serif text-3xl font-semibold sm:text-4xl">报名下一场,来见见同行的人。</h2>
+      <p class="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted">
+        报名一场线下活动,或者成为你所在城市的社区主理人。从一杯咖啡开始。
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a
+          href="/signup/"
+          class="rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent"
+        >
+          报名参加活动
+        </a>
+        <a
+          href="/events/"
+          class="rounded-full border border-ink px-6 py-3 text-sm transition-colors hover:bg-ink hover:text-paper"
+        >
+          看看全部活动
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

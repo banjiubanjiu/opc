@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import SignupForm from '../../components/SignupForm.astro';
+import { activities } from '../../data/site';
+
+export function getStaticPaths() {
+  return activities.map((a) => ({ params: { slug: a.slug }, props: { activity: a } }));
+}
+
+const { activity } = Astro.props;
+const dateText = `${activity.date.slice(0, 4)} 年 ${activity.date.slice(5, 7)} 月 ${activity.date.slice(8, 10)} 日`;
+---
+
+<Base title={activity.title} description={activity.intro}>
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-3xl px-5 py-14 sm:py-20">
+      <p class="text-xs uppercase tracking-[0.25em] text-accent">
+        {activity.city} · {activity.host}
+      </p>
+      <h1 class="mt-5 font-serif text-3xl font-semibold leading-snug sm:text-4xl">
+        {activity.title}
+      </h1>
+      <dl class="mt-8 grid gap-3 rounded-lg border border-line bg-white/50 p-6 text-sm sm:grid-cols-2">
+        <div>
+          <dt class="text-muted">时间</dt>
+          <dd class="mt-1 font-medium">{dateText} · {activity.time}</dd>
+        </div>
+        <div>
+          <dt class="text-muted">地点</dt>
+          <dd class="mt-1 font-medium">{activity.venue}</dd>
+        </div>
+        <div>
+          <dt class="text-muted">费用</dt>
+          <dd class="mt-1 font-medium">{activity.fee}</dd>
+        </div>
+        <div>
+          <dt class="text-muted">名额</dt>
+          <dd class="mt-1 font-medium">{activity.capacity}</dd>
+        </div>
+        <div>
+          <dt class="text-muted">适合阶段</dt>
+          <dd class="mt-1 font-medium text-accent">{activity.stage}</dd>
+        </div>
+      </dl>
+      <p class="mt-8 text-base leading-relaxed">{activity.intro}</p>
+
+      {activity.agenda.length > 0 && (
+        <div class="mt-10">
+          <h2 class="font-serif text-lg font-semibold">流程</h2>
+          <ul class="mt-4 space-y-3 border-l border-line pl-5">
+            {activity.agenda.map((a) => (
+              <li class="text-sm">
+                <span class="mr-3 font-mono text-xs text-accent">{a.time}</span>
+                {a.item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {activity.speakers.length > 0 && (
+        <div class="mt-10">
+          <h2 class="font-serif text-lg font-semibold">分享者</h2>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            {activity.speakers.map((s) => (
+              <div class="rounded-lg border border-line bg-white/50 p-4 text-sm">
+                <p class="font-medium">{s.name}</p>
+                <p class="mt-1 text-xs text-muted">{s.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {activity.note && (
+        <p class="mt-10 rounded-lg bg-accent-soft px-4 py-3 text-xs leading-relaxed text-accent">
+          {activity.note}
+        </p>
+      )}
+
+      <div class="mt-12">
+        <h2 class="font-serif text-2xl font-semibold">报名</h2>
+        <div class="mt-5">
+          <SignupForm eventSlug={activity.slug} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

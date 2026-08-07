@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import QuoteBlock from '../../components/QuoteBlock.astro';
+import EventCard from '../../components/EventCard.astro';
+import { activities } from '../../data/site';
+---
+
+<Base title="活动" description="OPC 社区线下沙龙:AI × 科技向善 × 永续发展">
+  <!-- 为什么办活动 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="01" label="为什么办活动" />
+      <h1 class="mt-8 font-serif text-3xl font-semibold sm:text-5xl">不只在线交流,更要真实相遇。</h1>
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        不是一次性的课程或活动,而是长期陪伴的现场。我们把科技向善、真实与永续,
+        设计进每一场活动——它不是一个下午的聚会,而是一次次把理念落地的练习。
+      </p>
+      <div class="mt-8">
+        <QuoteBlock
+          quote="技术赋能公益,创新蕴含温情。"
+          source="CCF 技术公益黑客马拉松 · 主题"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 我们有什么不一样 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="02" label="我们的活动,有什么不一样" />
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {[
+          ['小', '每场十几人,每个人都有开口的机会,而不是坐在台下听。'],
+          ['真', '分享只讲真做过的——「言而当,知也;默而当,亦知也。」'],
+          ['善', '主旋律是 AI 与科技向善:聊的不只是怎么赚钱,还有科技怎么缓解真实的苦楚。'],
+        ].map(([t, d]) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5">
+            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs text-muted">
+        「永续」落在细节:小规模、低成本、公益透明——让活动可以一直办下去。
+        <span class="mt-1 block font-serif italic">Less isolating, more sustainable.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- 你能得到什么 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="03" label="来一场,你能得到什么" />
+      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
+        无论你走到哪一步,都有对应的一场。
+      </h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {[
+          ['想法期', '把想法说出来,24 小时内收到同行者的真实反馈。', 'Coffee Chat'],
+          ['验证期', '听踩过坑的人讲获客、验证、定价——别闷头准备三个月。', '闭门沙龙'],
+          ['MVP 期', 'AI 工具实战,把开发周期从月压到周。', '主题工作坊'],
+        ].map(([t, d, tag]) => (
+          <div class="rounded-lg border border-line bg-white/50 p-5">
+            <p class="text-xs text-accent">{tag}</p>
+            <p class="mt-1 font-serif text-lg font-semibold">{t}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-xs text-muted">
+        每场活动都标注适合的阶段,按需参加,不必从头开始。
+      </p>
+    </div>
+  </section>
+
+  <!-- 近期活动 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="04" label="近期活动" />
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
+        目前我们主要活跃在<span class="text-ink">佛山、广州</span>,
+        深圳等更多广东城市也在陆续开启。
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {activities.map((a) => <EventCard activity={a} />)}
+      </div>
+      <p class="mt-8 text-xs text-muted">
+        活动为公益,仅需支付 49 元茶水费。
+      </p>
+    </div>
+  </section>
+</Base>
