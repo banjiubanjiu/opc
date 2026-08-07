@@ -4,6 +4,7 @@ import SectionLabel from '../components/SectionLabel.astro';
 import QuoteBlock from '../components/QuoteBlock.astro';
 import VoiceCard from '../components/VoiceCard.astro';
 import EventCard from '../components/EventCard.astro';
+import HeroMark from '../components/HeroMark.astro';
 import { site, activities } from '../data/site';
 
 const upcoming = activities.filter((a) => a.featured).slice(0, 2);
@@ -50,43 +51,32 @@ const voices = [
 <Base title={site.name} description={site.slogan}>
   <!-- Hero -->
   <section class="border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-28">
-      <p class="text-xs uppercase tracking-[0.3em] text-accent">OPC · One-Person Company 社区</p>
-      <h1 class="mt-6 max-w-3xl font-serif text-4xl font-semibold leading-tight sm:text-6xl">
-        一个人,<span class="text-accent">也是一家公司。</span>
-      </h1>
-      <p class="mt-4 font-serif italic text-muted">Build solo, not alone.</p>
-      <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-        OPC(One-Person Company)指以一个人为核心运转的创业形态:独立开发者、独立设计师、
-        自由顾问、内容创作者……一个人从想法到产品,再到一家公司。
-        我们定期在城市里见面,聊产品、获客、AI 的实战,也一起践行科技向善:
-        让科技缓解真实的苦楚,帮助有需要的人群。
-      </p>
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a
-          href="#why"
-          class="rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent"
-        >
-          为什么是现在
-        </a>
-        <a
-          href="#events"
-          class="rounded-full border border-ink px-6 py-3 text-sm transition-colors hover:bg-ink hover:text-paper"
-        >
-          看看最近的活动
-        </a>
+    <div class="mx-auto grid max-w-5xl items-center gap-12 px-5 py-20 sm:py-28 lg:grid-cols-[1.2fr_1fr]">
+      <div>
+        <p class="mono-eyebrow text-coral">OPC · One-Person Company 社区</p>
+        <h1 class="display-xl mt-8">
+          一个人,<br />
+          <span class="text-accent">也是一家公司。</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          一个人从想法到产品,再到一家公司。我们定期在<span class="text-ink">佛山、广州</span>见面,
+          聊产品、获客、AI 的实战,也一起践行<span class="text-coral">科技向善</span>。
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <a href="#why" class="btn-primary">为什么是现在</a>
+          <a href="#events" class="btn-secondary">看看最近的活动</a>
+        </div>
       </div>
+      <HeroMark className="mx-auto w-full max-w-[420px]" />
     </div>
   </section>
 
   <!-- 为什么是现在 -->
   <section id="why" class="border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
       <SectionLabel no="01" label="为什么是现在" />
-      <h2 class="mt-8 max-w-3xl font-serif text-3xl font-semibold leading-snug sm:text-4xl">
-        生产工具第一次向个人开放。
-      </h2>
-      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+      <h2 class="display-lg mt-8 max-w-3xl">生产工具第一次向个人开放。</h2>
+      <div class="mt-8 grid gap-10 lg:grid-cols-2">
         <div class="space-y-5 text-sm leading-relaxed text-muted">
           <p>
             过去个体创业的瓶颈,是人力成本与专业分工。今天,
@@ -99,8 +89,8 @@ const voices = [
             收款、推广、交付、复购,都可以在一部设备里完成。
           </p>
         </div>
-        <div class="rounded-lg border border-line bg-white/50 p-6 text-sm leading-relaxed text-muted">
-          <p class="font-serif text-lg font-semibold text-ink">这并非中国的独有现象:</p>
+        <div class="rounded-lg bg-surface-card p-7 text-sm leading-relaxed text-muted">
+          <p class="font-serif text-lg font-medium text-ink">这并非中国的独有现象:</p>
           <ul class="mt-4 space-y-3">
             <li>美国拥有单一创始人的新创企业占比,从 2019 年的 23.7% 升至 2025 年上半年的 36.3%</li>
             <li>英国私营部门约 570 万家企业中,430 万家不雇用除业主之外的任何人</li>
@@ -112,12 +102,10 @@ const voices = [
   </section>
 
   <!-- 但先泼一盆冷水 -->
-  <section id="reality" class="border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+  <section id="reality" class="border-b border-line bg-surface-warm">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
       <SectionLabel no="02" label="但先泼一盆冷水" />
-      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
-        真实的困境。
-      </h2>
+      <h2 class="display-lg mt-8">真实的困境。</h2>
       <div class="mt-8 space-y-6">
         <QuoteBlock
           quote="一人公司从来不是职场的避风港,只是换了一种形式承受更大的压力与内耗。"
@@ -128,18 +116,25 @@ const voices = [
           source="吴晓波频道《个人经济体》专题 · 36氪引用"
         />
       </div>
-      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+      <!-- 规则线分隔的数据行(Cohere: 少卡片,多用未加框的行) -->
+      <div class="mt-10">
         {[
-          '超过半数的创业者,月收入低于 7000 元。',
-          '大多数项目运营半年,依旧无法实现盈利。',
-          '工作与生活的边界消失,长期伴随营收焦虑。',
-        ].map((t) => (
-          <div class="rounded-lg border border-line bg-white/50 p-5 text-sm leading-relaxed text-muted">
-            {t}
+          ['超过半数', '创业者月收入低于 7000 元'],
+          ['大多数', '项目运营半年,依旧无法实现盈利'],
+          ['长期伴随', '营收焦虑,工作与生活的边界消失'],
+        ].map(([n, d], i) => (
+          <div
+            class:list={[
+              'flex flex-wrap items-baseline gap-x-6 gap-y-1 border-t border-line py-6 sm:items-center',
+              i === 2 && 'border-b',
+            ]}
+          >
+            <span class="display-md w-40 shrink-0">{n}</span>
+            <span class="text-sm leading-relaxed text-muted sm:text-base">{d}</span>
           </div>
         ))}
       </div>
-      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      <div class="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
         <VoiceCard
           quote="工作 9 年的积蓄快用完了。先到这里吧,我得去找个班上了。"
           name="程序员自由创业周记"
@@ -151,7 +146,7 @@ const voices = [
           source="#40:结束了 · w2solo"
         />
       </div>
-      <p class="mt-6 text-xs text-muted">
+      <p class="mt-10 text-xs text-muted">
         「嘤其鸣矣,求其友声。」——《诗经·小雅·伐木》
       </p>
     </div>
@@ -159,25 +154,23 @@ const voices = [
 
   <!-- 那我们想做什么:真实的声音 -->
   <section id="voices" class="border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
       <SectionLabel no="03" label="那我们想做什么" />
-      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
-        同见同行,走更远的路。
-      </h2>
+      <h2 class="display-lg mt-8">同见同行,走更远的路。</h2>
       <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
         一个人做产品的日子,大多是这样的:早上醒来先看后台数据,回复群里的反馈和报错,
         遇到问题就约用户见一面——大多数时间,对着屏幕,四下无人。
         我们想做的很简单:定期在城市里组织小规模见面。
       </p>
       <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        <div class="rounded-lg border border-line bg-white/50 p-5">
-          <p class="font-serif text-lg font-semibold text-accent">Coffee Chat</p>
+        <div class="rounded-lg bg-surface-card p-7">
+          <p class="font-serif text-lg font-medium text-ink">Coffee Chat</p>
           <p class="mt-2 text-sm leading-relaxed text-muted">
             低门槛的下午茶:每人介绍自己在做的事、卡住的地方,其余时间自由聊。
           </p>
         </div>
-        <div class="rounded-lg border border-line bg-white/50 p-5">
-          <p class="font-serif text-lg font-semibold text-accent">闭门沙龙</p>
+        <div class="rounded-lg bg-surface-card p-7">
+          <p class="font-serif text-lg font-medium text-ink">闭门沙龙</p>
           <p class="mt-2 text-sm leading-relaxed text-muted">
             邀请实践者讲透一个环节:获客、交付、客服。内容不外传。
           </p>
@@ -186,32 +179,44 @@ const voices = [
       <p class="mt-4 text-xs text-muted">
         「他山之石,可以攻玉。」——《诗经·小雅·鹤鸣》
       </p>
-      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {voices.map((v) => <VoiceCard {...v} />)}
+      <!-- 首条声音:大引言 -->
+      <figure class="mt-10 border-t border-line pt-8">
+        <blockquote class="display-lg max-w-3xl text-ink">
+          “{voices[0].quote}”
+        </blockquote>
+        <figcaption class="mt-4 flex items-baseline gap-3 text-sm">
+          <span class="font-medium">{voices[0].name}</span>
+          <span class="text-xs text-muted">{voices[0].source}</span>
+        </figcaption>
+      </figure>
+      <!-- 其余声音:双栏规则行 -->
+      <div class="mt-10 grid gap-x-12 gap-y-7 lg:grid-cols-2">
+        {voices.slice(1).map((v) => <VoiceCard {...v} />)}
       </div>
-      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+      <div class="mt-8">
         {[
           ['同行的分享,是最精准的信息', '独学而无友,则孤陋而寡闻。——《礼记·学记》'],
           ['聊方法、心得、心路历程', '言而当,知也;默而当,亦知也。——《荀子》'],
-          ['免费报名', '活动为公益,仅需支付 49 元茶水费。'],
+          ['免费报名', '活动为公益,仅需支付 <span class="text-coral">49 元</span> 茶水费。'],
         ].map(([t, d]) => (
-          <div class="rounded-lg border border-line bg-white/50 p-5">
-            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
-            <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
+          <div class="flex flex-wrap items-baseline gap-x-6 gap-y-1 border-t border-line py-5">
+            <span class="display-md w-72 shrink-0">{t}</span>
+            <span class="text-sm leading-relaxed text-muted" set:html={d}></span>
           </div>
         ))}
+        <div class="border-b border-line"></div>
       </div>
     </div>
   </section>
 
   <!-- 我们能提供什么 -->
   <section class="border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
       <SectionLabel no="04" label="我们能提供什么" />
-      <h2 class="mt-8 font-serif text-3xl font-semibold sm:text-4xl">
+      <h2 class="display-lg mt-8 max-w-3xl">
         面向一人公司实践者:独立开发者、独立设计师、自由顾问、内容创作者。
       </h2>
-      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {[
           ['同行', '线下活动与城市社区:每场十几人,人人有开口的机会。'],
           ['经验', '真实的分享与踩坑:只讲真做过的,第一桶金 $4.16 和“先到这里吧”都摆上台面。'],
@@ -219,8 +224,8 @@ const voices = [
           ['理念', '科技向善与永续:聊的不只是怎么赚钱,还有科技怎么缓解真实的苦楚。'],
           ['机会', '合作与连接:互为客户,互为供应商,从一杯咖啡开始。'],
         ].map(([t, d]) => (
-          <div class="rounded-lg border border-line bg-white/50 p-5">
-            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
+          <div class="border-t border-line pt-5">
+            <p class="font-serif text-lg font-medium text-ink">{t}</p>
             <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
           </div>
         ))}
@@ -230,10 +235,10 @@ const voices = [
 
   <!-- 活动 -->
   <section id="events" class="border-b border-line">
-    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
       <div class="flex items-end justify-between">
         <SectionLabel no="05" label="近期活动" />
-        <a href="/events/" class="text-sm text-accent hover:underline">全部活动 →</a>
+        <a href="/events/" class="text-sm text-action-blue hover:underline">全部活动 →</a>
       </div>
       <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
         目前我们主要活跃在<span class="text-ink">佛山、广州</span>,
@@ -245,26 +250,17 @@ const voices = [
     </div>
   </section>
 
-  <!-- 加入 -->
-  <section>
-    <div class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
-      <h2 class="font-serif text-3xl font-semibold sm:text-4xl">报名下一场,来见见同行的人。</h2>
-      <p class="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted">
+  <!-- 加入:深绿黑产品带 -->
+  <section class="bg-surface-dark text-on-dark">
+    <div class="mx-auto max-w-5xl px-5 py-20 text-center sm:py-28">
+      <p class="mono-eyebrow text-coral">Join the community</p>
+      <h2 class="display-lg mx-auto mt-6 max-w-2xl">报名下一场,来见见同行的人。</h2>
+      <p class="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-on-dark-soft">
         报名一场线下活动,或者成为你所在城市的社区主理人。从一杯咖啡开始。
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a
-          href="/signup/"
-          class="rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent"
-        >
-          报名参加活动
-        </a>
-        <a
-          href="/events/"
-          class="rounded-full border border-ink px-6 py-3 text-sm transition-colors hover:bg-ink hover:text-paper"
-        >
-          看看全部活动
-        </a>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        <a href="/signup/" class="btn-on-dark">报名参加活动</a>
+        <a href="/events/" class="btn-on-dark-link">看看全部活动</a>
       </div>
     </div>
   </section>

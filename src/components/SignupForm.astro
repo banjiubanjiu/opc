@@ -8,7 +8,7 @@ interface Props {
 const { eventSlug } = Astro.props;
 ---
 
-<div id="signup-form" class="rounded-lg border border-line bg-white/60 p-6 sm:p-8">
+<div id="signup-form" class="rounded-xl bg-surface-card p-6 sm:p-8">
   <form
     class="grid gap-4"
     data-signup-form
@@ -22,7 +22,7 @@ const { eventSlug } = Astro.props;
           name="name"
           required
           placeholder="怎么称呼你"
-          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-muted-soft focus:border-action-blue focus:ring-2 focus:ring-action-blue/20"
         />
       </label>
       <label class="block">
@@ -31,7 +31,7 @@ const { eventSlug } = Astro.props;
           name="contact"
           required
           placeholder="用于确认到场"
-          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-muted-soft focus:border-action-blue focus:ring-2 focus:ring-action-blue/20"
         />
       </label>
     </div>
@@ -40,7 +40,7 @@ const { eventSlug } = Astro.props;
         <span class="mb-1 block text-sm text-muted">你现在的状态</span>
         <select
           name="status"
-          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm text-ink outline-none transition-all focus:border-action-blue focus:ring-2 focus:ring-action-blue/20"
         >
           <option>正在经营一人公司</option>
           <option>独立开发 / 自由职业</option>
@@ -53,7 +53,7 @@ const { eventSlug } = Astro.props;
         <input
           name="city"
           placeholder="如:佛山 / 广州"
-          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+          class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-muted-soft focus:border-action-blue focus:ring-2 focus:ring-action-blue/20"
         />
       </label>
     </div>
@@ -63,7 +63,7 @@ const { eventSlug } = Astro.props;
         name="topic"
         rows="3"
         placeholder="获客、定价、AI 工具、时间管理……都可以"
-        class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+        class="w-full rounded-md border border-line bg-paper px-3 py-2.5 text-sm text-ink outline-none transition-all placeholder:text-muted-soft focus:border-action-blue focus:ring-2 focus:ring-action-blue/20"
       ></textarea>
     </label>
     <p class="text-xs text-muted">
@@ -71,7 +71,7 @@ const { eventSlug } = Astro.props;
     </p>
     <button
       type="submit"
-      class="w-full rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent sm:w-auto"
+      class="btn-primary w-full sm:w-auto"
     >
       提交报名
     </button>

@@ -1,18 +1,36 @@
 @import "tailwindcss";
 
+/* 设计系统来源:cohere/DESIGN.md (getdesign add cohere) — Cohere 2026 设计语言
+   纯白编辑画布 + 近黑 pill CTA + 超大紧凑展示标题 + 深绿黑产品带 + 规则线列表
+   珊瑚只做小点缀,蓝色只做研究型链接
+   OPC 定制:画布/分隔线略暖,抵消企业感;珊瑚用于编号/眉题/引言/关键强调 */
 @theme {
-  --color-paper: #faf8f4;
-  --color-ink: #191714;
-  --color-muted: #6e675e;
-  --color-line: #e5e0d6;
-  --color-accent: #1b5e4f;
-  --color-accent-soft: #e4ece8;
+  --color-paper: #fdfcfa; /* 暖白画布(Cohere 纯白 + 一点暖) */
+  --color-ink: #17171c; /* 近黑 */
+  --color-muted: #75758a; /* slate */
+  --color-muted-soft: #93939f;
+  --color-line: #e3e0da; /* 暖 hairline */
+  --color-line-soft: #f2f2f2;
+  --color-accent: #17171c; /* 主按钮 = 近黑 */
+  --color-accent-active: #000000;
+  --color-accent-soft: #fff1ec; /* 极淡珊瑚底(提醒条/淡色带) */
+  --color-surface-card: #eeece7; /* soft stone 卡片 */
+  --color-surface-warm: #fbf3ee; /* 极暖淡色带(部分 section 背景) */
+  --color-surface-dark: #003c33; /* 深绿黑产品带 */
+  --color-surface-dark-elevated: #0a4d41;
+  --color-on-dark: #ffffff;
+  --color-on-dark-soft: #a8c8bf;
+  --color-coral: #e8663f; /* 珊瑚(小点缀),略加深保证对比 */
+  --color-action-blue: #1863dc; /* 仅链接 */
   --font-serif:
     "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun",
     Georgia, serif;
   --font-sans:
     -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei",
     "Helvetica Neue", Arial, sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
 }
 
 html {
@@ -20,7 +38,7 @@ html {
 }
 
 body {
-  background: var(--color-paper);
+  background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -28,6 +46,142 @@ body {
 }
 
 ::selection {
-  background: var(--color-accent);
+  background: var(--color-ink);
   color: var(--color-paper);
+}
+
+/* 可访问性:键盘聚焦态(Cohere focus-blue) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-action-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* 尊重系统减少动效设置 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 展示级标题:超大、行高极紧、负字距(参照 Cohere 的 monumental display) */
+.display-xl {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 8vw, 5rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.display-lg {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.display-md {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* 等宽小标签(Cohere mono-label) */
+.mono-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* 近黑 pill 主按钮(参照 button-primary) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-ink);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.85rem 1.6rem;
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-active);
+}
+
+/* 次按钮 = 下划线文字链接(参照 button-secondary) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.85rem 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-line);
+  transition: text-decoration-color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  text-decoration-color: var(--color-ink);
+}
+
+/* 深色带上的白色 pill 按钮 */
+.btn-on-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--color-surface-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.85rem 1.6rem;
+  border-radius: 9999px;
+  transition: opacity 0.15s ease;
+}
+
+.btn-on-dark:hover {
+  opacity: 0.88;
+}
+
+/* 深色带上的文字链接 */
+.btn-on-dark-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-on-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.85rem 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgb(255 255 255 / 0.35);
+  transition: text-decoration-color 0.15s ease;
+}
+
+.btn-on-dark-link:hover {
+  text-decoration-color: var(--color-on-dark);
 }

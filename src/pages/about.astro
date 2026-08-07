@@ -9,8 +9,8 @@ import { site } from '../data/site';
   <!-- 引言 -->
   <section class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-16 sm:py-24">
-      <p class="text-xs uppercase tracking-[0.3em] text-accent">About · 理念</p>
-      <h1 class="mt-6 max-w-3xl font-serif text-3xl font-semibold leading-snug sm:text-5xl">
+      <p class="mono-eyebrow text-coral">About · 理念</p>
+      <h1 class="display-xl mt-6 max-w-3xl">
         追求变大是大多数人的惯性选择,
         <br />
         追求变好才是一人公司的真谛。
@@ -36,7 +36,7 @@ import { site } from '../data/site';
           source="Paul Jarvis · 《一人公司》(Company of One)"
         />
         <p class="text-xs uppercase tracking-[0.2em] text-muted">
-          One-Person Company — <span class="text-accent">not freelancing, not a side hustle.</span>
+          One-Person Company — <span class="text-ink">not freelancing, not a side hustle.</span>
         </p>
       </div>
       <p class="mt-8 text-sm leading-relaxed text-muted">
@@ -45,8 +45,8 @@ import { site } from '../data/site';
       <div class="mt-10 grid gap-4 sm:grid-cols-3">
         {
           site.mission.principles.map((p, i) => (
-            <div class="rounded-lg border border-line bg-white/50 p-5">
-              <p class="font-serif text-sm text-accent">0{i + 1} · {p.title}</p>
+            <div class="rounded-xl bg-surface-card p-5">
+              <p class="font-serif text-sm text-coral">0{i + 1} · {p.title}</p>
               <p class="mt-2 text-sm leading-relaxed text-muted">{p.desc}</p>
             </div>
           ))
@@ -95,7 +95,7 @@ import { site } from '../data/site';
   <section class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
       <SectionLabel no="03" label="我们不做什么" />
-      <div class="mt-8 rounded-lg border border-line bg-white/50 p-6">
+      <div class="mt-8 rounded-xl bg-surface-card p-6">
         <p class="text-sm leading-relaxed text-muted">
           Patagonia 卖得最好的产品是岩钉,但岩钉会损伤岩壁——创始人亲手停产了它。
           对自己最赚钱的东西说“不”,是价值观最直接的证明。
@@ -108,8 +108,8 @@ import { site } from '../data/site';
           ['不拉人头', '少则得,多则惑。——《道德经》'],
           ['不做裂变', '桃李不言,下自成蹊。——《史记》'],
         ].map(([t, d]) => (
-          <div class="rounded-lg border border-line bg-white/50 p-5">
-            <p class="font-serif text-lg font-semibold text-accent">{t}</p>
+          <div class="rounded-xl bg-surface-card p-5">
+            <p class="font-serif text-lg font-medium text-ink">{t}</p>
             <p class="mt-2 text-sm leading-relaxed text-muted">{d}</p>
           </div>
         ))}
@@ -127,7 +127,7 @@ import { site } from '../data/site';
   <section>
     <div class="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
       <SectionLabel no="04" label="我们的使命" />
-      <p class="mx-auto mt-10 max-w-2xl font-serif text-2xl font-semibold leading-relaxed sm:text-3xl">
+      <p class="display-md mx-auto mt-10 max-w-2xl">
         「出入相友,守望相助。」
       </p>
       <p class="mx-auto mt-4 text-xs text-muted">——《孟子·滕文公上》</p>
@@ -140,16 +140,16 @@ import { site } from '../data/site';
           ['见面', '到现场,认识几个同行的人。'],
           ['主理人', '想办一场?申请成为你所在城市的主理人。'],
         ].map(([t, d], i) => (
-          <div class="rounded-lg border border-line bg-white/50 p-5 text-left">
-            <p class="font-serif text-sm text-accent">0{i + 1}</p>
-            <p class="mt-2 font-serif font-semibold">{t}</p>
+          <div class="rounded-xl bg-surface-card p-5 text-left">
+            <p class="font-serif text-sm text-coral">0{i + 1}</p>
+            <p class="mt-2 font-serif font-medium">{t}</p>
             <p class="mt-1 text-sm leading-relaxed text-muted">{d}</p>
           </div>
         ))}
       </div>
       <a
         href="/signup/"
-        class="mt-10 inline-block rounded-full bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-accent"
+        class="btn-primary mt-10"
       >
         报名下一场活动
       </a>

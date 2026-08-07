@@ -1,0 +1,85 @@
+---
+interface Props {
+  className?: string;
+}
+const { className = '' } = Astro.props;
+---
+
+<!-- 线条星座:一个人(中心)连接产品、用户、客户、伙伴(Cohere 细线几何风格) -->
+<svg
+  viewBox="0 0 520 400"
+  class={className}
+  role="img"
+  aria-label="一个人是一张网络的中心"
+  fill="none"
+>
+  <!-- 连接线 -->
+  <g stroke="var(--color-ink)" stroke-width="1.2" opacity="0.85">
+    <line x1="140" y1="120" x2="260" y2="200" />
+    <line x1="260" y1="200" x2="400" y2="120" />
+    <line x1="140" y1="120" x2="400" y2="120" />
+    <line x1="140" y1="120" x2="150" y2="300" />
+    <line x1="400" y1="120" x2="350" y2="300" />
+    <line x1="260" y1="200" x2="150" y2="300" />
+    <line x1="260" y1="200" x2="350" y2="300" />
+    <line x1="150" y1="300" x2="350" y2="300" />
+  </g>
+  <!-- 节点 -->
+  <circle cx="260" cy="200" r="30" fill="var(--color-ink)" />
+  <circle cx="260" cy="200" r="11" fill="var(--color-paper)" />
+  <circle cx="140" cy="120" r="7" fill="var(--color-ink)" />
+  <circle cx="400" cy="120" r="7" fill="var(--color-ink)" />
+  <circle cx="150" cy="300" r="7" fill="var(--color-coral)" />
+  <circle cx="350" cy="300" r="7" fill="var(--color-ink)" />
+  <!-- 中心标注 -->
+  <text
+    x="260"
+    y="268"
+    text-anchor="middle"
+    font-family="var(--font-serif)"
+    font-size="15"
+    fill="var(--color-muted)"
+  >
+    一个人
+  </text>
+  <text
+    x="140"
+    y="92"
+    text-anchor="middle"
+    font-family="var(--font-serif)"
+    font-size="13"
+    fill="var(--color-muted)"
+  >
+    产品
+  </text>
+  <text
+    x="400"
+    y="92"
+    text-anchor="middle"
+    font-family="var(--font-serif)"
+    font-size="13"
+    fill="var(--color-muted)"
+  >
+    用户
+  </text>
+  <text
+    x="92"
+    y="304"
+    text-anchor="end"
+    font-family="var(--font-serif)"
+    font-size="13"
+    fill="var(--color-muted)"
+  >
+    客户
+  </text>
+  <text
+    x="408"
+    y="304"
+    text-anchor="start"
+    font-family="var(--font-serif)"
+    font-size="13"
+    fill="var(--color-muted)"
+  >
+    伙伴
+  </text>
+</svg>

@@ -22,7 +22,7 @@ const nav = [
             href={item.href}
             class:list={[
               'text-muted transition-colors hover:text-ink',
-              Astro.url.pathname === item.href && 'text-ink underline decoration-accent underline-offset-4',
+              Astro.url.pathname === item.href && 'text-ink underline decoration-coral decoration-2 underline-offset-4',
             ]}
           >
             {item.label}
@@ -31,7 +31,7 @@ const nav = [
       }
       <a
         href="/signup/"
-        class="hidden rounded-full border border-ink px-4 py-1.5 text-sm transition-colors hover:bg-ink hover:text-paper sm:inline-block"
+        class="hidden rounded-full bg-ink px-4 py-2 text-sm text-paper transition-opacity hover:opacity-85 sm:inline-block"
       >
         加入社区
       </a>
