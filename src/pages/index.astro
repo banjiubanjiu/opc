@@ -8,44 +8,6 @@ import HeroMark from '../components/HeroMark.astro';
 import { site, activities } from '../data/site';
 
 const upcoming = activities.filter((a) => a.featured).slice(0, 2);
-
-const voices = [
-  {
-    quote: '他们就像我的孩子,每个细节都是一个人在四下无人的深夜或午后打磨的。',
-    name: '程序员自由创业周记',
-    source: '#40:结束了 · w2solo',
-  },
-  {
-    quote: '工作并没有比北京轻松,反而工作时间变得更长,只是做自己喜欢的事情,从心态上会更积极。',
-    name: '河北 · 开源作者',
-    source: '月收入赶超北京工资 · w2solo',
-  },
-  {
-    quote: '从我辞职到现在,我只做了 Reqable 这一个项目。',
-    name: 'Reqable 作者',
-    source: '独立开发 2 年半 · 前商汤',
-  },
-  {
-    quote: '存的钱要够至少一年的房租、房贷和生活基本消费,这才好辞职出来折腾。',
-    name: '李唐',
-    source: '钱迹 App 作者 · w2solo',
-  },
-  {
-    quote: '独立开发者的体验:爽、纯粹、发现更多可能、健康是最重要的。',
-    name: '李唐',
-    source: '钱迹 App 作者 · w2solo',
-  },
-  {
-    quote: '把“一人公司”从创业神话,还原为一种可迁移的思维模型。',
-    name: '图灵的猫',
-    source: 'B 站 · 概念祛魅',
-  },
-  {
-    quote: '做了一场 13 个月的梦。',
-    name: '程序员自由创业周记',
-    source: '#39 · w2solo',
-  },
-];
 ---
 
 <Base title={site.name} description={site.slogan}>
@@ -71,10 +33,37 @@ const voices = [
     </div>
   </section>
 
+  <!-- 什么是一人公司 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
+      <SectionLabel no="01" label="什么是一人公司" />
+      <h2 class="display-lg mt-8 max-w-3xl">一个人,也是一整支队伍。</h2>
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        “一人公司”(One Person Company,简称 OPC)是指
+        <span class="text-ink">个人借助 AI 工具,独立完成产品设计、研发到市场投放的
+        全链路商业闭环</span>,实现<span class="text-coral">“单人成军”</span>的创业方式。
+      </p>
+      <div class="mt-10">
+        {[
+          ['一个人', '不组队、不招聘:创始人同时兼任产品、设计、研发、运营与客服。'],
+          ['借助 AI', '设计、编程、文案、财务、数据分析……AI 承担了本需一个团队的工种。'],
+          ['全链路闭环', '从产品设计、研发到市场投放,独立完成,盈亏自担,直接对用户负责。'],
+          ['单人成军', '一个人顶一支队伍:从“一人公司”的创业神话,到可迁移的思维模型。'],
+        ].map(([t, d]) => (
+          <div class="flex flex-wrap items-baseline gap-x-6 gap-y-1 border-t border-line py-6 sm:items-center">
+            <span class="display-md w-44 shrink-0">{t}</span>
+            <span class="text-sm leading-relaxed text-muted sm:text-base">{d}</span>
+          </div>
+        ))}
+        <div class="border-b border-line"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 为什么是现在 -->
   <section id="why" class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
-      <SectionLabel no="01" label="为什么是现在" />
+      <SectionLabel no="02" label="为什么是现在" />
       <h2 class="display-lg mt-8 max-w-3xl">生产工具第一次向个人开放。</h2>
       <div class="mt-8 grid gap-10 lg:grid-cols-2">
         <div class="space-y-5 text-sm leading-relaxed text-muted">
@@ -104,7 +93,7 @@ const voices = [
   <!-- 但先泼一盆冷水 -->
   <section id="reality" class="border-b border-line bg-surface-warm">
     <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
-      <SectionLabel no="02" label="但先泼一盆冷水" />
+      <SectionLabel no="03" label="但先泼一盆冷水" />
       <h2 class="display-lg mt-8">真实的困境。</h2>
       <div class="mt-8 space-y-6">
         <QuoteBlock
@@ -152,10 +141,10 @@ const voices = [
     </div>
   </section>
 
-  <!-- 那我们想做什么:真实的声音 -->
-  <section id="voices" class="border-b border-line">
+  <!-- 那我们想做什么 -->
+  <section class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
-      <SectionLabel no="03" label="那我们想做什么" />
+      <SectionLabel no="04" label="那我们想做什么" />
       <h2 class="display-lg mt-8">同见同行,走更远的路。</h2>
       <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
         一个人做产品的日子,大多是这样的:早上醒来先看后台数据,回复群里的反馈和报错,
@@ -166,53 +155,26 @@ const voices = [
         <div class="rounded-lg bg-surface-card p-7">
           <p class="font-serif text-lg font-medium text-ink">Coffee Chat</p>
           <p class="mt-2 text-sm leading-relaxed text-muted">
-            低门槛的下午茶:每人介绍自己在做的事、卡住的地方,其余时间自由聊。
+            一杯咖啡,没有班味,欢迎一切浓度的人(开发 / 产品 / OPC / FDE……)
           </p>
         </div>
         <div class="rounded-lg bg-surface-card p-7">
-          <p class="font-serif text-lg font-medium text-ink">闭门沙龙</p>
+          <p class="font-serif text-lg font-medium text-ink">实训 · 沙龙 · 分享会</p>
           <p class="mt-2 text-sm leading-relaxed text-muted">
-            邀请实践者讲透一个环节:获客、交付、客服。内容不外传。
+            开设创业实训课堂、行业交流沙龙、前沿技术分享会,搭建创业者互通交流平台,推动技术协同、资源共享、社群共创。
           </p>
         </div>
       </div>
       <p class="mt-4 text-xs text-muted">
         「他山之石,可以攻玉。」——《诗经·小雅·鹤鸣》
       </p>
-      <!-- 首条声音:大引言 -->
-      <figure class="mt-10 border-t border-line pt-8">
-        <blockquote class="display-lg max-w-3xl text-ink">
-          “{voices[0].quote}”
-        </blockquote>
-        <figcaption class="mt-4 flex items-baseline gap-3 text-sm">
-          <span class="font-medium">{voices[0].name}</span>
-          <span class="text-xs text-muted">{voices[0].source}</span>
-        </figcaption>
-      </figure>
-      <!-- 其余声音:双栏规则行 -->
-      <div class="mt-10 grid gap-x-12 gap-y-7 lg:grid-cols-2">
-        {voices.slice(1).map((v) => <VoiceCard {...v} />)}
-      </div>
-      <div class="mt-8">
-        {[
-          ['同行的分享,是最精准的信息', '独学而无友,则孤陋而寡闻。——《礼记·学记》'],
-          ['聊方法、心得、心路历程', '言而当,知也;默而当,亦知也。——《荀子》'],
-          ['免费报名', '活动为公益,仅需支付 <span class="text-coral">49 元</span> 茶水费。'],
-        ].map(([t, d]) => (
-          <div class="flex flex-wrap items-baseline gap-x-6 gap-y-1 border-t border-line py-5">
-            <span class="display-md w-72 shrink-0">{t}</span>
-            <span class="text-sm leading-relaxed text-muted" set:html={d}></span>
-          </div>
-        ))}
-        <div class="border-b border-line"></div>
-      </div>
     </div>
   </section>
 
   <!-- 我们能提供什么 -->
   <section class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
-      <SectionLabel no="04" label="我们能提供什么" />
+      <SectionLabel no="05" label="我们能提供什么" />
       <h2 class="display-lg mt-8 max-w-3xl">
         面向一人公司实践者:独立开发者、独立设计师、自由顾问、内容创作者。
       </h2>
@@ -237,8 +199,8 @@ const voices = [
   <section id="events" class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-20 sm:py-24">
       <div class="flex items-end justify-between">
-        <SectionLabel no="05" label="近期活动" />
-        <a href="/events/" class="text-sm text-action-blue hover:underline">全部活动 →</a>
+        <SectionLabel no="06" label="近期活动" />
+        <a href="/events/" class="text-sm text-coral hover:underline">全部活动 →</a>
       </div>
       <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
         目前我们主要活跃在<span class="text-ink">佛山、广州</span>,
@@ -254,7 +216,7 @@ const voices = [
   <section class="bg-surface-dark text-on-dark">
     <div class="mx-auto max-w-5xl px-5 py-20 text-center sm:py-28">
       <p class="mono-eyebrow text-coral">Join the community</p>
-      <h2 class="display-lg mx-auto mt-6 max-w-2xl">报名下一场,来见见同行的人。</h2>
+      <h2 class="mx-auto mt-6 max-w-2xl font-serif text-[clamp(1.5rem,3.6vw,2.6rem)] font-medium leading-tight tracking-[-0.02em]">用你的生活方式经营你的事业。</h2>
       <p class="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-on-dark-soft">
         报名一场线下活动,或者成为你所在城市的社区主理人。从一杯咖啡开始。
       </p>

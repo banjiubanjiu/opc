@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
-import SignupForm from '../components/SignupForm.astro';
+import SignupForm from '../components/react/SignupForm';
+import { site } from '../data/site';
 ---
 
 <Base title="报名" description="报名参加 OPC 社区线下活动">
@@ -13,7 +14,7 @@ import SignupForm from '../components/SignupForm.astro';
         活动为公益,仅需支付 49 元茶水费。填写后我们会在活动前 1–2 天通过微信 / 短信与你确认。
       </p>
       <div class="mt-10">
-        <SignupForm />
+        <SignupForm client:load endpoint={site.formEndpoint} />
       </div>
     </div>
   </section>

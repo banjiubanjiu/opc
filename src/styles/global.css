@@ -1,27 +1,81 @@
+/* HeroUI v3 集成:按需引入组件样式,避免全量(全量 index.css 会把 80+ 组件都打进去)
+   tailwindcss 与 tw-animate-css 是 @heroui/styles 的基础依赖,此处显式引入 */
 @import "tailwindcss";
+@import "tw-animate-css";
 
-/* 设计系统来源:cohere/DESIGN.md (getdesign add cohere) — Cohere 2026 设计语言
-   纯白编辑画布 + 近黑 pill CTA + 超大紧凑展示标题 + 深绿黑产品带 + 规则线列表
-   珊瑚只做小点缀,蓝色只做研究型链接
-   OPC 定制:画布/分隔线略暖,抵消企业感;珊瑚用于编号/眉题/引言/关键强调 */
+/* HeroUI 基础 */
+@import "@heroui/styles/base";
+@import "@heroui/styles/base/scrollbar.css";
+/* HeroUI 共享原语 */
+@import "@heroui/styles/components/close-button.css";
+@import "@heroui/styles/components/description.css";
+@import "@heroui/styles/components/error-message.css";
+@import "@heroui/styles/components/field-error.css";
+@import "@heroui/styles/components/label.css";
+/* 本项目用到的组件:表单 + 按钮 + 下拉 */
+@import "@heroui/styles/components/button.css";
+@import "@heroui/styles/components/input.css";
+@import "@heroui/styles/components/textfield.css";
+@import "@heroui/styles/components/textarea.css";
+@import "@heroui/styles/components/select.css";
+@import "@heroui/styles/components/popover.css";
+@import "@heroui/styles/components/list-box.css";
+@import "@heroui/styles/components/list-box-item.css";
+@import "@heroui/styles/components/list-box-section.css";
+@import "@heroui/styles/components/dropdown.css";
+@import "@heroui/styles/components/tag.css";
+@import "@heroui/styles/components/kbd.css";
+/* 主题 / 工具 / 变体 */
+@import "@heroui/styles/themes/default";
+@import "@heroui/styles/utilities";
+@import "@heroui/styles/variants";
+
+/* HeroUI 主题对齐 OPC(默认靛蓝 → 珊瑚主色/暖奶油) */
+:root {
+  --accent: #cc785c;
+  --accent-foreground: #ffffff;
+  --background: #faf9f5;
+  --surface: #ffffff;
+  --overlay: #ffffff;
+  --field-background: #ffffff;
+  --field-border: #e6dfd8;
+  --field-radius: 0.5rem;
+  --radius: 0.5rem;
+  --muted: #6c6a64;
+}
+
+/* HeroUI 按钮对齐 OPC:全 pill(Cohere 近黑胶囊按钮) */
+.button {
+  border-radius: 9999px;
+}
+
+/* ============================================================
+   设计系统来源:cohere/DESIGN.md 布局 + Claude 配色(2026-08-08 定稿)
+   用户确认:Claude 配色更好(暖奶油画布 + 珊瑚 + 深色收尾)
+   - 画布:暖奶油 #faf9f5
+   - 主色/CTA:珊瑚 #cc785c(Claude 标志性)
+   - 深色面:暖黑 #181715(收尾带 + 页脚)
+   - 卡片:奶油 #efe9de;次级文字:暖棕灰 #6c6a64
+   表面层级:画布 → 奶油卡 → 深色带 → 页脚
+   ============================================================ */
 @theme {
-  --color-paper: #fdfcfa; /* 暖白画布(Cohere 纯白 + 一点暖) */
-  --color-ink: #17171c; /* 近黑 */
-  --color-muted: #75758a; /* slate */
-  --color-muted-soft: #93939f;
-  --color-line: #e3e0da; /* 暖 hairline */
-  --color-line-soft: #f2f2f2;
-  --color-accent: #17171c; /* 主按钮 = 近黑 */
-  --color-accent-active: #000000;
-  --color-accent-soft: #fff1ec; /* 极淡珊瑚底(提醒条/淡色带) */
-  --color-surface-card: #eeece7; /* soft stone 卡片 */
-  --color-surface-warm: #fbf3ee; /* 极暖淡色带(部分 section 背景) */
-  --color-surface-dark: #003c33; /* 深绿黑产品带 */
-  --color-surface-dark-elevated: #0a4d41;
-  --color-on-dark: #ffffff;
-  --color-on-dark-soft: #a8c8bf;
-  --color-coral: #e8663f; /* 珊瑚(小点缀),略加深保证对比 */
-  --color-action-blue: #1863dc; /* 仅链接 */
+  --color-paper: #faf9f5; /* 暖奶油画布 */
+  --color-ink: #141413; /* 暖墨色 */
+  --color-muted: #6c6a64; /* 暖棕灰 */
+  --color-muted-soft: #8e8b82;
+  --color-line: #e6dfd8; /* hairline */
+  --color-line-soft: #ebe6df;
+  --color-accent: #cc785c; /* 珊瑚(主 CTA + 强调) */
+  --color-accent-active: #a9583e;
+  --color-accent-soft: #f5e9e3; /* 淡珊瑚底 */
+  --color-surface-card: #efe9de; /* 奶油卡 */
+  --color-surface-warm: #f5f0e8; /* 暖淡色带 */
+  --color-surface-dark: #181715; /* 暖黑深色带 */
+  --color-surface-dark-elevated: #252320;
+  --color-on-dark: #faf9f5;
+  --color-on-dark-soft: #a09d96;
+  --color-coral: #cc785c; /* = accent,保留语义别名 */
+  --color-accent-teal: #5db8a6; /* 备用的次级点缀 */
   --font-serif:
     "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun",
     Georgia, serif;
@@ -50,10 +104,10 @@ body {
   color: var(--color-paper);
 }
 
-/* 可访问性:键盘聚焦态(Cohere focus-blue) */
+/* 可访问性:键盘聚焦态(珊瑚,与暖色系统一致) */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-action-blue);
+  outline: 2px solid var(--color-coral);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -73,7 +127,7 @@ button:focus-visible {
 /* 展示级标题:超大、行高极紧、负字距(参照 Cohere 的 monumental display) */
 .display-xl {
   font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 500;
   line-height: 1.04;
   letter-spacing: -0.02em;
@@ -104,12 +158,12 @@ button:focus-visible {
   color: var(--color-muted);
 }
 
-/* 近黑 pill 主按钮(参照 button-primary) */
+/* 近黑 pill 主按钮 → 珊瑚主 CTA(Claude 配色) */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-ink);
+  background: var(--color-accent);
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 500;

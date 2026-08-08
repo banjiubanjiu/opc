@@ -3,7 +3,46 @@ import Base from '../../layouts/Base.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import QuoteBlock from '../../components/QuoteBlock.astro';
 import EventCard from '../../components/EventCard.astro';
+import VoiceCard from '../../components/VoiceCard.astro';
 import { activities } from '../../data/site';
+
+const voices = [
+  {
+    quote: '他们就像我的孩子,每个细节都是一个人在四下无人的深夜或午后打磨的。',
+    name: '程序员自由创业周记',
+    source: '#40:结束了 · w2solo',
+  },
+  {
+    quote: '工作并没有比北京轻松,反而工作时间变得更长,只是做自己喜欢的事情,从心态上会更积极。',
+    name: '河北 · 开源作者',
+    source: '月收入赶超北京工资 · w2solo',
+  },
+  {
+    quote: '从我辞职到现在,我只做了 Reqable 这一个项目。',
+    name: 'Reqable 作者',
+    source: '独立开发 2 年半 · 前商汤',
+  },
+  {
+    quote: '存的钱要够至少一年的房租、房贷和生活基本消费,这才好辞职出来折腾。',
+    name: '李唐',
+    source: '钱迹 App 作者 · w2solo',
+  },
+  {
+    quote: '独立开发者的体验:爽、纯粹、发现更多可能、健康是最重要的。',
+    name: '李唐',
+    source: '钱迹 App 作者 · w2solo',
+  },
+  {
+    quote: '把“一人公司”从创业神话,还原为一种可迁移的思维模型。',
+    name: '图灵的猫',
+    source: 'B 站 · 概念祛魅',
+  },
+  {
+    quote: '做了一场 13 个月的梦。',
+    name: '程序员自由创业周记',
+    source: '#39 · w2solo',
+  },
+];
 ---
 
 <Base title="活动" description="OPC 社区线下沙龙:AI × 科技向善 × 永续发展">
@@ -72,10 +111,36 @@ import { activities } from '../../data/site';
     </div>
   </section>
 
+  <!-- 同行者的声音 -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
+      <SectionLabel no="04" label="同行者的声音" />
+      <h2 class="display-lg mt-8">先听听,再出发。</h2>
+      <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        下面这些话,来自已经在路上的人——独立开发者、开源作者、App 作者。
+        有甜头,也有苦水;出发之前,先听听真的。
+      </p>
+      <!-- 首条声音:大引言 -->
+      <figure class="mt-10 border-t border-line pt-8">
+        <blockquote class="display-lg max-w-3xl text-ink">
+          “{voices[0].quote}”
+        </blockquote>
+        <figcaption class="mt-4 flex items-baseline gap-3 text-sm">
+          <span class="font-medium">{voices[0].name}</span>
+          <span class="text-xs text-muted">{voices[0].source}</span>
+        </figcaption>
+      </figure>
+      <!-- 其余声音:双栏规则行 -->
+      <div class="mt-10 grid gap-x-12 gap-y-7 lg:grid-cols-2">
+        {voices.slice(1).map((v) => <VoiceCard {...v} />)}
+      </div>
+    </div>
+  </section>
+
   <!-- 近期活动 -->
   <section class="border-b border-line">
     <div class="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-      <SectionLabel no="04" label="近期活动" />
+      <SectionLabel no="05" label="近期活动" />
       <p class="mt-6 max-w-2xl text-sm leading-relaxed text-muted">
         目前我们主要活跃在<span class="text-ink">佛山、广州</span>,
         深圳等更多广东城市也在陆续开启。

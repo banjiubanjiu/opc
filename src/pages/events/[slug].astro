@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
-import SignupForm from '../../components/SignupForm.astro';
-import { activities } from '../../data/site';
+import SignupForm from '../../components/react/SignupForm';
+import { activities, site } from '../../data/site';
 
 export function getStaticPaths() {
   return activities.map((a) => ({ params: { slug: a.slug }, props: { activity: a } }));
@@ -81,7 +81,7 @@ const dateText = `${activity.date.slice(0, 4)} 年 ${activity.date.slice(5, 7)} 
       <div class="mt-12">
         <h2 class="display-md">报名</h2>
         <div class="mt-5">
-          <SignupForm eventSlug={activity.slug} />
+          <SignupForm client:load eventSlug={activity.slug} endpoint={site.formEndpoint} />
         </div>
       </div>
     </div>
