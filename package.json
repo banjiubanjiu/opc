@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy:pages": "pnpm build && wrangler pages deploy dist --project-name=opc-community"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.2",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4"
+    "@types/react-dom": "^19.2.4",
+    "wrangler": "^4.120.0"
   }
 }
